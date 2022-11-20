@@ -1,8 +1,11 @@
 package com.example.chat_app.DI
 
 import com.example.chat_app.common.Constants
+import com.example.chat_app.data.Remote.LogApi
 import com.example.chat_app.data.Remote.LoginApi
+import com.example.chat_app.data.Repository.LogRepositoryImpl
 import com.example.chat_app.data.Repository.LoginRepositoryImpl
+import com.example.chat_app.domain.Repository.LogRepository
 import com.example.chat_app.domain.Repository.LoginRepository
 import dagger.Module
 import dagger.Provides
@@ -27,7 +30,22 @@ object AppModule {
     }
     @Provides
     @Singleton
+    fun provideLogApi(): LogApi{
+        return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(LogApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideLoginRepository(api: LoginApi): LoginRepository{
         return LoginRepositoryImpl(api)
+    }
+    @Provides
+    @Singleton
+    fun provideLogRepository(api: LogApi): LogRepository{
+        return LogRepositoryImpl(api)
     }
 }
