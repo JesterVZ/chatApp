@@ -12,7 +12,6 @@ import com.example.chat_app.domain.UseCases.LoginUseCase
 import javax.inject.Inject
 
 class LoginFragment @Inject constructor(
-    private val loginUseCase: LoginUseCase
 ) : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
@@ -23,7 +22,7 @@ class LoginFragment @Inject constructor(
     override fun onStart() {
         super.onStart()
         binding.loginButton.setOnClickListener{
-            loginUseCase
+            //loginUseCase
         }
     }
 

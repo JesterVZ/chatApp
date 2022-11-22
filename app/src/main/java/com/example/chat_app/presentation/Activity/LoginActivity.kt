@@ -23,7 +23,9 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportFragmentManager.beginTransaction().add(binding.fragmentContainerView.id, LoginFragment()).commit()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
